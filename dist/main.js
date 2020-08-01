@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"RenderStuff\", function() { return RenderStuff; });\nconst RenderStuff = (products) => {\n  let $el = document.querySelector(\".products-section\")\n  products.forEach(element => {\n    $el.append(element.title);\n  });\n}\n\n//# sourceURL=webpack:///./Render.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"RenderStuff\", function() { return RenderStuff; });\nconst createProductItem = product => {\n  let productItem = document.createElement('div');\n  productItem.className += \"product-item\";\n\n  let itemPhoto = document.createElement(\"img\");\n  itemPhoto.src = product.image.src;\n  itemPhoto.className += \"item-photo\";\n\n  let itemName = document.createElement(\"p\");\n  itemName.className += \"item-name\";\n  itemName.innerHTML = product.title\n\n  let itemPrice = document.createElement(\"p\");\n  itemPrice.className += \"item-price\";\n  itemPrice.innerHTML = product.variants[0].price\n\n  productItem.append(itemPhoto);\n  productItem.append(itemName);\n  productItem.append(itemPrice);\n\n\n  return productItem;\n}\nconst RenderStuff = (products) => {\n  let $el = document.querySelector(\".products-section\")\n  products.forEach(element => {\n    const newItem = createProductItem(element)\n    $el.append(newItem);\n  });\n}\n\n//# sourceURL=webpack:///./Render.js?");
 
 /***/ }),
 

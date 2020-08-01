@@ -126,12 +126,20 @@ margin-bottom: 100px;
 
 .products{
   margin-bottom: 100px;
-
 }
 .products-section{
-  
+  padding: 2.5%;
   height: 350px;
   background-color: rgb(242, 242, 242);
+  display: flex;
+  justify-content: left
+}
+.product-item{
+  height: 60%;
+}
+.item-photo {
+  width: 100%;
+  height: 85%;
 }
 .smaller-detail {
   width: 20%
