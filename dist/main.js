@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"RenderStuff\", function() { return RenderStuff; });\nconst RenderStuff = (products) => {\n}\n\n//# sourceURL=webpack:///./Render.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"RenderStuff\", function() { return RenderStuff; });\nconst RenderStuff = (products) => {\n  let $el = document.querySelector(\".products-section\")\n  products.forEach(element => {\n    $el.append(element.title);\n  });\n}\n\n//# sourceURL=webpack:///./Render.js?");
 
 /***/ }),
 
@@ -105,7 +105,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// import _ from \"lodash\";\n// function component() {\n//   const element = document.createElement(\"div\");\n\nconst { RenderStuff } = __webpack_require__(/*! ../Render */ \"./Render.js\");\n\n//   // Lodash, currently included via a script, is required for this line to work\n//   element.innerHTML = \"Hey\"\n\n//   return element;\n// }\n\n// document.querySelector(\"#main\").appendChild(component())\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n  async function getData(url) {\n    const res = await fetch(url)\n    return res.json()\n  }\n  async function fetchProducts() {\n    const products = await getData(\"https://protected-fortress-19687.herokuapp.com/api/products\")\n    console.log(products)\n    RenderStuff(products.products);\n  }\n  fetchProducts();\n});\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("// import _ from \"lodash\";\n// function component() {\n//   const element = document.createElement(\"div\");\n\nconst { RenderStuff } = __webpack_require__(/*! ../Render */ \"./Render.js\");\n\n//   // Lodash, currently included via a script, is required for this line to work\n//   element.innerHTML = \"Hey\"\n\n//   return element;\n// }\n\n// document.querySelector(\"#main\").appendChild(component())\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n  async function getData(url) {\n    const res = await fetch(url)\n    return res.json()\n  }\n  async function fetchProducts() {\n    const products = await getData(\"https://protected-fortress-19687.herokuapp.com/api/products\")\n    console.log(products)\n    debugger\n    RenderStuff(products.products);\n  }\n  fetchProducts();\n});\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 

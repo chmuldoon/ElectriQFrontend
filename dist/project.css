@@ -52,26 +52,88 @@ body {
 
 #main {
   width: 80%;
-  background-color: green;
 }
 
 nav a{
+  font-weight: 600;
+}
+
+nav a:not(:first-child){
+  margin-left: 30px;
+}
+.rounded {
+  border-radius: 15px;;
+}
+
+.for-sale-area {
+ height: 450px;
+ position: relative;
+ margin-top: 50px;
+margin-bottom: 100px;
+
+}
+
+.for-sale-back {
+  position: absolute;
+  height: 450px;
+  width: 100%;
+  z-index: 1;
+  opacity: .5;
+  
+}
+.filler {
+  height: 10%;
+}
+.back-box {
+  border: 1px black solid;
+  height: 90%;
+  width: 90%;
+  margin: 0 auto 0 auto;
+}
+
+.for-sale-front {
+  position: absolute;
+  height: 450px;
+  width: 100%;
+  z-index: 2;
+  display: flex;
+}
+.main-img {
+  height: 90%;
+  margin-right: 6vw
+}
+.sale-section {
+  padding-top: 150px;
+  display: flex;
+  justify-content: left;
+  height: 100%;
+  width: 60%;
   font-weight: 700;
 
 }
-
-.for-sale {
-  background-color: greenyellow;
-  margin-top: 3vh;
-  padding-top: 3vh;
-  height: 400px;
-  display: flex;
-  justify-content: center;
+.sale-section h1 {
+  font-size: 50px;
+  margin-bottom: 2vh;
+}
+.buy-box{
+  color: white;
+  background-color: black;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  width: 60%;
 }
 
-.back-box {
-  height: 80%;
-  width: 90%;
-  border: 2px black solid;
-  border-radius: 15px;
+.products{
+  margin-bottom: 100px;
+
 }
+.products-section{
+  
+  height: 350px;
+  background-color: rgb(242, 242, 242);
+}
+.smaller-detail {
+  width: 20%
+}
+/* Products section */

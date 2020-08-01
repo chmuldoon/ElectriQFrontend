@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
   async function fetchProducts() {
     const products = await getData("https://protected-fortress-19687.herokuapp.com/api/products")
     console.log(products)
+    debugger
     RenderStuff(products.products);
   }
   fetchProducts();
