@@ -1,15 +1,6 @@
-// import _ from "lodash";
-// function component() {
-//   const element = document.createElement("div");
 
-const { renderProducts, parseProducts, bindEvents } = require("../Render");
-//   // Lodash, currently included via a script, is required for this line to work
-//   element.innerHTML = "Hey"
+const { renderProducts, parseProducts, } = require("../Render");
 
-//   return element;
-// }
-
-// document.querySelector("#main").appendChild(component())
 document.addEventListener("DOMContentLoaded", function () {
   async function getData(url) {
     const res = await fetch(url)
@@ -20,10 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(products)
     const parsed = parseProducts(products.products);
     renderProducts(parsed);
-    document.getElementById("price").addEventListener("click", () => 
+    $(".Price").click(() => 
       renderProducts(parsed, "price")
     )
-    document.getElementById("alpha").addEventListener("click", () => 
+    $(".Alphabetical").click(() => 
       renderProducts(parsed, "alpha")
     );
   }

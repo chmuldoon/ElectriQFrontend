@@ -323,6 +323,7 @@ nav a:not(:first-child){
     height: 50px;
     padding-top: 10px;
     font-size: 28px;
+    border-radius: unset;
 
   }
   .for-sale-area{
@@ -414,7 +415,7 @@ nav a:not(:first-child){
     margin-bottom: 20px;
   }
   .sorter{
-  padding: 10px 45px 10px 45px;
+    padding: 10px 45px 10px 45px;
 
   }
   .buy-box {
@@ -446,6 +447,15 @@ nav a:not(:first-child){
   }
   .buy-box {
     width: 300px;
+  }
+}
+@media (max-width: 400px){
+  .product-item,
+  .item-photo{
+    width: 140px;
+  }
+  .item-photo{
+    height: 140px;
   }
 }
 
