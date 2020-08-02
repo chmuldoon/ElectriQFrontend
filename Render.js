@@ -14,29 +14,19 @@ export const parseProducts = products => {
 //   })
 // }
 const createProductItem = product => {
-  let productItem = document.createElement('div');
-  productItem.className += "product-item lifted";
+  let $productItem = $("<div/>", { class: "product-item lifted" });
 
-  let itemPhoto = document.createElement("img");
-  itemPhoto.src = product.photo;
-  itemPhoto.className += "item-photo" +" rounded";
+  let $itemPhoto = $("<img/>", { class: "item-photo rounded shadow", src: product.photo})
+  let $itemName = $("<p/>", { class: "item-name" }).append(product.name)
+  let $itemPrice = $("<p/>", { class: "item-price" }).append("$"+product.priceString);
 
-  let itemName = document.createElement("p");
-  itemName.className += "item-name";
-  itemName.innerHTML = product.name
+  $productItem.append($itemPhoto)
+  $productItem.append($itemName);
+  $productItem.append($itemPrice);
 
-  let itemPrice = document.createElement("p");
-  itemPrice.className += "item-price";
-  itemPrice.innerHTML = "$" + product.priceString;
-  
-  // let name = document.createElement("div");
-  // name.append(itemName);
 
-  productItem.append(itemPhoto);
-  productItem.append(itemName);
-  productItem.append(itemPrice);
-
-  return productItem;
+  debugger
+  return $productItem[0]
 }
 
 export const renderProducts = (products, filter = null) => {
