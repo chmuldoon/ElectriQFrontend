@@ -40,9 +40,9 @@ export const renderProducts = async (products, filter = null) => {
       products = products.sort((a, b) => (a.name > b.name) ? 1 : -1);
     }
   }
+  
   setTimeout(function() {
-
-    products.forEach((element) => {
+  products.forEach((element) => {
       const newItem = createProductItem(element);
       $el.append(newItem);
     });

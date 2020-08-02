@@ -175,6 +175,7 @@ nav a:not(:first-child){
   font-size: 50px;
   margin-bottom: 2vh;
 }
+.seller,
 .buy-box{
   color: white;
   background-color: black;
@@ -182,6 +183,7 @@ nav a:not(:first-child){
   text-align: center;
   line-height: 40px;
   width: 60%;
+  cursor: pointer;
 }
 
 .products{
@@ -273,6 +275,7 @@ nav a:not(:first-child){
   cursor: default;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  font-weight: 700;
 
 }
 
@@ -289,6 +292,8 @@ nav a:not(:first-child){
 @media (max-width: 1150px){
   .products-section{
   flex-wrap: wrap;
+  min-height: 430px;
+
     
   }
   .sale-section h1 {
@@ -302,6 +307,8 @@ nav a:not(:first-child){
   .products-section{
     padding-left: 10%;
     padding-right: 10%;
+  min-height: 430px;
+
 
   }
  
@@ -310,8 +317,13 @@ nav a:not(:first-child){
   .for-sale-back{
     display: none;
   }
+  
   .smaller-detail {
     width: 100%;
+    height: 50px;
+    padding-top: 10px;
+    font-size: 28px;
+
   }
   .for-sale-area{
     display: flex;
@@ -340,6 +352,9 @@ nav a:not(:first-child){
   .sale-section,
   .sale-section div {
     width: unset;
+  }
+  .buy-box {
+    width: 300px;
   }
   .main-img{
     height: 400px;
@@ -402,8 +417,13 @@ nav a:not(:first-child){
   padding: 10px 45px 10px 45px;
 
   }
+  .buy-box {
+    width: 300px;
+  }
   
-
+  .buy-box {
+    width: 300px;
+  }
 }
 @media (max-width: 510px){
    #main {
@@ -423,6 +443,9 @@ nav a:not(:first-child){
   }
   .product-item{
     height: 230px;
+  }
+  .buy-box {
+    width: 300px;
   }
 }
 
