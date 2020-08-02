@@ -25,25 +25,26 @@ const createProductItem = product => {
   $productItem.append($itemPrice);
 
 
-  debugger
   return $productItem[0]
 }
 
-export const renderProducts = (products, filter = null) => {
+export const renderProducts = async (products, filter = null) => {
   let $el = document.querySelector(".products-section");
 
   while($el.firstChild) $el.removeChild($el.firstChild);
-
+  
   if(filter){
     if(filter === "price"){
-      products = products.sort((a, b) => a.priceInt - b.priceInt);
+      products = products.sort((a, b) => b.priceInt - a.priceInt);
     }else{
       products = products.sort((a, b) => (a.name > b.name) ? 1 : -1);
     }
   }
-  debugger
-  products.forEach((element) => {
-    const newItem = createProductItem(element);
-    $el.append(newItem);
-  });
+  setTimeout(function() {
+
+    products.forEach((element) => {
+      const newItem = createProductItem(element);
+      $el.append(newItem);
+    });
+  },200)
 }

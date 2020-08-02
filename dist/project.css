@@ -94,7 +94,6 @@ nav a::after {
   padding: 5px;
   max-height: 0;
   color: rgba(0,0,0,0);
-  /* border-right: 2px solid rgba(0,0,0,0); */
   content: attr(data-text);
   transition: max-height .3s,border-color 0s;
 }
@@ -157,7 +156,7 @@ nav a:not(:first-child){
   display: flex;
 }
 .main-img {
-  height: 90%;
+  height: 400px;
   margin-right: 6vw;
 
 }
@@ -194,21 +193,27 @@ nav a:not(:first-child){
   background-color: rgb(242, 242, 242);
   display: flex;
   justify-content: space-between;
+  min-height: 330px;
 }
 
 .filter {
   background-color: rgb(242, 242, 242);
-  /* float: right; */
-  /* align-content: flex-end; */
+
   width: 100%;
   display: flex;
   padding-top: 20px;
 
 }
-.filter div {
+.sorter-wrapper {
   display: flex;
   margin-right: 15px;
   margin-left: auto;
+}
+.sorters {
+  display: flex;
+}
+#alpha {
+  margin: 0 20px 0 20px;
 }
 .sorter {
   color: rgb(112, 112, 112);;
@@ -233,13 +238,20 @@ nav a:not(:first-child){
 
 }
 
-
-.filter
+.product-item {
+  cursor: pointer;
+  animation: fadein 2s;
+    -moz-animation: fadein 2s; 
+    -webkit-animation: fadein 2s; 
+    -o-animation: fadein 2s; 
+}
+/* .filter,
 .product-item{
   height: 300px;
   width: 220px;
   cursor: pointer;
-}
+  
+} */
 .item-name {
   font-weight: 600;
   margin-top: 10px;
@@ -263,6 +275,7 @@ nav a:not(:first-child){
   border-top-right-radius: 5px;
 
 }
+
 @media (max-width: 1430px){
   .product-item,
   .item-photo{
@@ -339,6 +352,7 @@ nav a:not(:first-child){
   }
   .product-item{
     height: 280px;
+    
   }
   .product-item,
   .item-photo{
@@ -350,22 +364,45 @@ nav a:not(:first-child){
   .product-item{
     height: 220px;
   }
-  .filter div:first-child,
-  .filter div > div,
-  .filter div > div:first-child,
-  .filter div {
+  .sorter-wrapper,
+  .filter div > div{
     margin: unset
     
   }
-
-  .filter div > div{
-    display: block;
+  .sorters,
+  .sorter-wrapper {
     width: 100%;
+  }
+  .filter div {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #alpha{
+    margin: unset;
+    margin-right: 5px;
+  }
+  #price{
+    margin-left: 5px;
+  }
+  .sorters,
+  .sort-by{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+  .sort-by {
+    height: 30px;
+    padding-bottom: 20px;
+  }
+  .filter div {
+    margin-bottom: 20px;
+  }
+  .sorter{
+  padding: 10px 45px 10px 45px;
 
   }
-  .filter div:first-child {
- 
-  }
+  
 
 }
 @media (max-width: 510px){
