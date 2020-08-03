@@ -1,5 +1,5 @@
 
-const { renderProducts, parseProducts, } = require("../Render");
+const { renderProducts, parseProducts, } = require("./Render");
 
 document.addEventListener("DOMContentLoaded", function () {
   async function getData(url) {
@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   async function fetchProducts() {
     const products = await getData("https://protected-fortress-19687.herokuapp.com/api/products")
-    const parsed = parseProducts(products.products);
+    const parsed = parseProducts(products);
     renderProducts(parsed);
     $(".Price").click(() => 
       renderProducts(parsed, "price")

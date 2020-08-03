@@ -196,6 +196,7 @@ nav a:not(:first-child){
   display: flex;
   justify-content: space-between;
   min-height: 330px;
+  flex-wrap: wrap;
 }
 
 .filter {
@@ -246,6 +247,7 @@ nav a:not(:first-child){
     -moz-animation: fadein 2s; 
     -webkit-animation: fadein 2s; 
     -o-animation: fadein 2s; 
+  margin-bottom: 15px;
 }
 /* .filter,
 .product-item{

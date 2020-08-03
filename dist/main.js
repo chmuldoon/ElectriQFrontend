@@ -86,15 +86,15 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./Render.js":
-/*!*******************!*\
-  !*** ./Render.js ***!
-  \*******************/
+/***/ "./src/Render.js":
+/*!***********************!*\
+  !*** ./src/Render.js ***!
+  \***********************/
 /*! exports provided: parseProducts, renderProducts */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"parseProducts\", function() { return parseProducts; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"renderProducts\", function() { return renderProducts; });\nconst parseProducts = products => {\n  return products.map((product) => ({\n    name: product.title,\n    priceString: product.variants[0].price,\n    priceInt: parseInt(product.variants[0].price),\n    photo: product.image.src,\n  }));\n}\n// export const bindEvents = (products) => {\n//   debugger\n//   document.getElementById(\"price\").click((e) => {\n//     debugger\n//     renderProducts(products, \"price\")\n//   })\n// }\nconst createProductItem = product => {\n  let $productItem = $(\"<div/>\", { class: \"product-item lifted\" });\n\n  let $itemPhoto = $(\"<img/>\", { class: \"item-photo rounded shadow\", src: product.photo})\n  let $itemName = $(\"<p/>\", { class: \"item-name\" }).append(product.name)\n  let $itemPrice = $(\"<p/>\", { class: \"item-price\" }).append(\"$\"+product.priceString);\n\n  $productItem.append($itemPhoto)\n  $productItem.append($itemName);\n  $productItem.append($itemPrice);\n\n\n  return $productItem[0]\n}\n\nconst renderProducts = async (products, filter = null) => {\n  let $el = document.querySelector(\".products-section\");\n\n  while($el.firstChild) $el.removeChild($el.firstChild);\n  \n  if(filter){\n    if(filter === \"price\"){\n      products = products.sort((a, b) => b.priceInt - a.priceInt);\n    }else{\n      products = products.sort((a, b) => (a.name > b.name) ? 1 : -1);\n    }\n  }\n  \n  setTimeout(function() {\n  products.forEach((element) => {\n      const newItem = createProductItem(element);\n      $el.append(newItem);\n    });\n  },200)\n}\n\n//# sourceURL=webpack:///./Render.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"parseProducts\", function() { return parseProducts; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"renderProducts\", function() { return renderProducts; });\nconst parseProducts = products => {\n  return products.map((product) => ({\n    name: product.title,\n    priceString: product.variants[0].price,\n    priceInt: parseInt(product.variants[0].price),\n    photo: product.image.src,\n  }));\n}\n\nconst createProductItem = product => {\n  let $productItem = $(\"<div/>\", { class: \"product-item lifted\" });\n\n  let $itemPhoto = $(\"<img/>\", { class: \"item-photo rounded shadow\", src: product.photo})\n  let $itemName = $(\"<p/>\", { class: \"item-name\" }).append(product.name)\n  let $itemPrice = $(\"<p/>\", { class: \"item-price\" }).append(\"$\"+product.priceString);\n\n  $productItem.append($itemPhoto)\n  $productItem.append($itemName);\n  $productItem.append($itemPrice);\n\n\n  return $productItem[0]\n}\n\nconst renderProducts = async (products, filter = null) => {\n  let $el = $(\".products-section\");\n  $el.empty()\n  \n  if(filter){\n    if(filter === \"price\"){\n      products = products.sort((a, b) => b.priceInt - a.priceInt);\n    }else{\n      products = products.sort((a, b) => (a.name > b.name) ? 1 : -1);\n    }\n  }\n  \n  setTimeout(() => {\n    products.forEach((element) => {\n      const $newItem = createProductItem(element);\n      $el.append($newItem);\n    });\n  },200)\n}\n\n//# sourceURL=webpack:///./src/Render.js?");
 
 /***/ }),
 
@@ -105,7 +105,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("\nconst { renderProducts, parseProducts, } = __webpack_require__(/*! ../Render */ \"./Render.js\");\n\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n  async function getData(url) {\n    const res = await fetch(url)\n    return res.json()\n  }\n  async function fetchProducts() {\n    const products = await getData(\"https://protected-fortress-19687.herokuapp.com/api/products\")\n    console.log(products)\n    const parsed = parseProducts(products.products);\n    renderProducts(parsed);\n    $(\".Price\").click(() => \n      renderProducts(parsed, \"price\")\n    )\n    $(\".Alphabetical\").click(() => \n      renderProducts(parsed, \"alpha\")\n    );\n  }\n  fetchProducts();\n});\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("\nconst { renderProducts, parseProducts, } = __webpack_require__(/*! ./Render */ \"./src/Render.js\");\n\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n  async function getData(url) {\n    const res = await fetch(url)\n    return res.json()\n  }\n  async function fetchProducts() {\n    const products = await getData(\"https://protected-fortress-19687.herokuapp.com/api/products\")\n    const parsed = parseProducts(products);\n    renderProducts(parsed);\n    $(\".Price\").click(() => \n      renderProducts(parsed, \"price\")\n    )\n    $(\".Alphabetical\").click(() => \n      renderProducts(parsed, \"alpha\")\n    );\n  }\n  fetchProducts();\n});\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 

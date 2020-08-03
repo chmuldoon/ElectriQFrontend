@@ -6,13 +6,7 @@ export const parseProducts = products => {
     photo: product.image.src,
   }));
 }
-// export const bindEvents = (products) => {
-//   debugger
-//   document.getElementById("price").click((e) => {
-//     debugger
-//     renderProducts(products, "price")
-//   })
-// }
+
 const createProductItem = product => {
   let $productItem = $("<div/>", { class: "product-item lifted" });
 
@@ -29,9 +23,8 @@ const createProductItem = product => {
 }
 
 export const renderProducts = async (products, filter = null) => {
-  let $el = document.querySelector(".products-section");
-
-  while($el.firstChild) $el.removeChild($el.firstChild);
+  let $el = $(".products-section");
+  $el.empty()
   
   if(filter){
     if(filter === "price"){
@@ -41,10 +34,10 @@ export const renderProducts = async (products, filter = null) => {
     }
   }
   
-  setTimeout(function() {
-  products.forEach((element) => {
-      const newItem = createProductItem(element);
-      $el.append(newItem);
+  setTimeout(() => {
+    products.forEach((element) => {
+      const $newItem = createProductItem(element);
+      $el.append($newItem);
     });
   },200)
 }
