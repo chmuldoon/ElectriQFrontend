@@ -58,6 +58,7 @@ nav a{
   font-weight: 600;
   cursor: pointer;
 }
+
 a {
   text-decoration: none;
   color: rgba(0,0,0,1);
@@ -65,45 +66,10 @@ a {
   padding: 16px 7px;
   border-top: 2px solid rgba(0,0,0,0);
   border-bottom: 2px solid rgba(0,0,0,0);
-  transition: padding .3s,border-color .3s;
 }
-
-nav a:focus, nav a:hover {
-  padding: 5px 7px;
-  border-color: rgba(0,0,0,1);
-  outline: none;
+a:hover {
+  color: rgb(66, 66, 66);
 }
-
-nav a::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  max-height: 0;
-  color: rgba(0,0,0,0);
-  content: attr(data-text);
-  transition: max-height .3s,border-color 0s;
-}
-
-nav a::after {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  padding: 5px;
-  max-height: 0;
-  color: rgba(0,0,0,0);
-  content: attr(data-text);
-  transition: max-height .3s,border-color 0s;
-}
-
-nav a:focus::before, nav a:hover::before, nav a:focus::after, nav a:hover::after {
-  max-height: 100%;
-  transition-delay: .28s;
-  border-color: rgba(0,0,0,1);
-}
-
 nav a:not(:first-child){
   margin-left: 30px;
 }
@@ -181,9 +147,15 @@ nav a:not(:first-child){
   background-color: black;
   height: 40px;
   text-align: center;
+  border: 1px solid black;
   line-height: 40px;
   width: 60%;
   cursor: pointer;
+}
+.buy-box:hover {
+  background-color: white;
+  color: black;
+
 }
 
 .products{
@@ -461,4 +433,35 @@ nav a:not(:first-child){
   }
 }
 
+.fade-in {
+animation: fadeIn ease 2s;
+-webkit-animation: fadeIn ease 2s;
+-moz-animation: fadeIn ease 2s;
+-o-animation: fadeIn ease 2s;
+-ms-animation: fadeIn ease 2s;
+}
+@keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
 /* Products section */

@@ -8,7 +8,7 @@ export const parseProducts = products => {
 }
 
 const createProductItem = product => {
-  let $productItem = $("<div/>", { class: "product-item lifted" });
+  let $productItem = $("<div/>", { class: "product-item lifted fade-in" });
 
   let $itemPhoto = $("<img/>", { class: "item-photo rounded shadow", src: product.photo})
   let $itemName = $("<p/>", { class: "item-name" }).append(product.name)
