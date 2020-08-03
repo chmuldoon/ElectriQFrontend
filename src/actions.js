@@ -3,7 +3,6 @@ import { renderProducts, parseProducts } from "./render"
 import axios from "axios";
 
 const fetchData = async (url) => {
-  debugger
   try {
     const res = await axios.get(url);
     return res.data;
@@ -26,8 +25,5 @@ export const fetchProducts = async () => {
   const parsed = parseProducts(products);
   //Product Items get rendered
   renderProducts(parsed);
-  //add event listeners ready to deal with new data 
-  $(".Price").click(() => renderProducts(parsed, "price"));
-  $(".Alphabetical").click(() => renderProducts(parsed, "alpha"));
-
+  return parsed
 };
