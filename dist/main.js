@@ -408,15 +408,15 @@ eval("// shim for using process in browser\nvar process = module.exports = {};\n
 
 /***/ }),
 
-/***/ "./src/Render.js":
-/*!***********************!*\
-  !*** ./src/Render.js ***!
-  \***********************/
-/*! exports provided: parseProducts, renderProducts */
+/***/ "./src/actions.js":
+/*!************************!*\
+  !*** ./src/actions.js ***!
+  \************************/
+/*! exports provided: fetchProducts */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"parseProducts\", function() { return parseProducts; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"renderProducts\", function() { return renderProducts; });\nconst parseProducts = products => {\n  return products.map((product) => ({\n    name: product.title,\n    priceString: product.variants[0].price,\n    priceInt: parseInt(product.variants[0].price),\n    photo: product.image.src,\n  }));\n}\n\nconst createProductItem = product => {\n  let $productItem = $(\"<div/>\", { class: \"product-item lifted fade-in\" });\n\n  let $itemPhoto = $(\"<img/>\", { class: \"item-photo rounded shadow\", src: product.photo})\n  let $itemName = $(\"<p/>\", { class: \"item-name\" }).append(product.name)\n  let $itemPrice = $(\"<p/>\", { class: \"item-price\" }).append(\"$\"+product.priceString);\n\n  $productItem.append($itemPhoto)\n  $productItem.append($itemName);\n  $productItem.append($itemPrice);\n\n\n  return $productItem[0]\n}\n\nconst renderProducts = async (products, filter = null) => {\n  let $el = $(\".products-section\");\n  $el.empty()\n  \n  if(filter){\n    if(filter === \"price\"){\n      products = products.sort((a, b) => b.priceInt - a.priceInt);\n    }else{\n      products = products.sort((a, b) => (a.name > b.name) ? 1 : -1);\n    }\n  }\n  \n  setTimeout(() => {\n    products.forEach((element) => {\n      const $newItem = createProductItem(element);\n      $el.append($newItem);\n    });\n  },200)\n}\n\n//# sourceURL=webpack:///./src/Render.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"fetchProducts\", function() { return fetchProducts; });\n/* harmony import */ var _render__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./render */ \"./src/render.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\n\nconst fetchData = async (url) => {\n  debugger\n  try {\n    const res = await axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(url);\n    return res.data;\n  } catch (err) {\n    return { msg: \"Products not found\" };\n  }\n};\n\nconst fetchProducts = async () => {\n  const products = await fetchData(\n    \"https://protected-fortress-19687.herokuapp.com/api/products\"\n  );\n  //Checks if producs are found or not\n  if (!Array.isArray(products)) {\n    const $errMsg = $(\"<div/>\", { class: \"err-msg\" }).append(products.msg);\n    $(\".products-section\").append($errMsg);\n    return;\n  }\n  //If products are properly fetched the data is parsed into a smaller simpler product object\n  const parsed = Object(_render__WEBPACK_IMPORTED_MODULE_0__[\"parseProducts\"])(products);\n  //Product Items get rendered\n  Object(_render__WEBPACK_IMPORTED_MODULE_0__[\"renderProducts\"])(parsed);\n  //add event listeners ready to deal with new data \n  $(\".Price\").click(() => Object(_render__WEBPACK_IMPORTED_MODULE_0__[\"renderProducts\"])(parsed, \"price\"));\n  $(\".Alphabetical\").click(() => Object(_render__WEBPACK_IMPORTED_MODULE_0__[\"renderProducts\"])(parsed, \"alpha\"));\n\n};\n\n\n//# sourceURL=webpack:///./src/actions.js?");
 
 /***/ }),
 
@@ -428,7 +428,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Render__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Render */ \"./src/Render.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\n\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n  const fetchData = async (url) => {\n    try {\n      const res = await axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(url)\n      return res.data;\n    } catch (err) {\n      return { msg: \"Products not found\" }\n    }\n  }\n  async function fetchProducts() {\n    const products = await fetchData(\"https://protected-fortress-19687.herokuapp.com/api/products\")\n    debugger\n    if(!Array.isArray(products)) {\n      const $errMsg = $(\"<div/>\", { class: \"err-msg\"}).append(products.msg)\n      $(\".products-section\").append($errMsg)\n      return;\n    }\n    const parsed = Object(_Render__WEBPACK_IMPORTED_MODULE_0__[\"parseProducts\"])(products);\n    Object(_Render__WEBPACK_IMPORTED_MODULE_0__[\"renderProducts\"])(parsed);\n    $(\".Price\").click(() => \n      Object(_Render__WEBPACK_IMPORTED_MODULE_0__[\"renderProducts\"])(parsed, \"price\")\n    )\n    $(\".Alphabetical\").click(() => \n      Object(_Render__WEBPACK_IMPORTED_MODULE_0__[\"renderProducts\"])(parsed, \"alpha\")\n    );\n  }\n  fetchProducts();\n});\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actions */ \"./src/actions.js\");\n\n// document.addEventListener(\"DOMContentLoaded\",  () => {\n//   debugger\n//   fetchProducts()});\n\n//maybe too much jquery \n$(document).on(\"DOMContentLoaded\", () => Object(_actions__WEBPACK_IMPORTED_MODULE_0__[\"fetchProducts\"])());\n\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/render.js":
+/*!***********************!*\
+  !*** ./src/render.js ***!
+  \***********************/
+/*! exports provided: parseProducts, renderProducts */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"parseProducts\", function() { return parseProducts; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"renderProducts\", function() { return renderProducts; });\nconst parseProducts = products => {\n  return products.map((product) => ({\n    name: product.title,\n    priceString: product.variants[0].price,\n    priceInt: parseInt(product.variants[0].price),\n    photo: product.image.src,\n  }));\n}\n\nconst createProductItem = product => {\n  let $productItem = $(\"<div/>\", { class: \"product-item lifted fade-in\" });\n\n  let $itemPhoto = $(\"<img/>\", { class: \"item-photo rounded shadow\", src: product.photo})\n  let $itemName = $(\"<p/>\", { class: \"item-name\" }).append(product.name)\n  let $itemPrice = $(\"<p/>\", { class: \"item-price\" }).append(\"$\"+product.priceString);\n\n  $productItem.append($itemPhoto)\n  $productItem.append($itemName);\n  $productItem.append($itemPrice);\n\n\n  return $productItem[0]\n}\n\nconst renderProducts = async (products, filter = null) => {\n  let $el = $(\".products-section\");\n  $el.empty()\n  \n  if(filter){\n    if(filter === \"price\"){\n      products = products.sort((a, b) => b.priceInt - a.priceInt);\n    }else{\n      products = products.sort((a, b) => (a.name > b.name) ? 1 : -1);\n    }\n  }\n  \n  setTimeout(() => {\n    products.forEach((element) => {\n      const $newItem = createProductItem(element);\n      $el.append($newItem);\n    });\n  },200)\n}\n\n//# sourceURL=webpack:///./src/render.js?");
 
 /***/ })
 
